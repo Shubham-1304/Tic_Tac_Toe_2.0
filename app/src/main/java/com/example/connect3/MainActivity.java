@@ -41,7 +41,7 @@ public class MainActivity extends AppCompatActivity {
             coinPicked = 0;
         }
         else {
-            tagNo=Integer.parseInt(coin.getTag().toString());
+            //tagNo=Integer.parseInt(coin.getTag().toString());
             coinPicked = 1;
         }
     }
@@ -55,6 +55,7 @@ public class MainActivity extends AppCompatActivity {
 
             if (state[tapped] == 2 && w == 0) {
                 if (n == 0 && state[tapped] == 2 && coinPicked==1 ) {
+                    tagNo=Integer.parseInt(coin.getTag().toString());
                     c8.setImageResource(R.drawable.red);
                     state[tapped] = n;
                     n = 1;
@@ -62,6 +63,7 @@ public class MainActivity extends AppCompatActivity {
                     tagPostion[tapped]=tag;
                     coin.setVisibility(View.INVISIBLE);
                 } else if (n == 1 && state[tapped] == 2 && coinPicked==1 ) {
+                    tagNo=Integer.parseInt(coin.getTag().toString());
                     c8.setImageResource(R.drawable.yellow);
                     state[tapped] = n;
                     n = 0;
@@ -111,6 +113,7 @@ public class MainActivity extends AppCompatActivity {
             }else if (state[tapped]!=2 ){
                 if ((int)Array.get(tagPostion,tapped)%2==0 && tag>(int)Array.get(tagPostion,tapped) && (tag-(int)Array.get(tagPostion,tapped))>=3 && (tag-(int)Array.get(tagPostion,tapped))%2!=0) {
                     Toast.makeText(this, "coin override", Toast.LENGTH_SHORT).show();
+                    tagNo=Integer.parseInt(coin.getTag().toString());
                     c8.setImageResource(R.drawable.red);
                     state[tapped] = n;
                     n = 1;
@@ -120,6 +123,7 @@ public class MainActivity extends AppCompatActivity {
                 }
                 else if((int)Array.get(tagPostion,tapped)%2!=0 && tag>(int)Array.get(tagPostion,tapped) && (tag-(int)Array.get(tagPostion,tapped))>=1 && (tag-(int)Array.get(tagPostion,tapped))%2!=0) {
                     c8.setImageResource(R.drawable.yellow);
+                    tagNo=Integer.parseInt(coin.getTag().toString());
                     state[tapped] = n;
                     n = 0;
                     coinPicked = 0;
