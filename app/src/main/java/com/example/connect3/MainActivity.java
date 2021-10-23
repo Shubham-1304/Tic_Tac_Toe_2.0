@@ -30,6 +30,8 @@ public class MainActivity extends AppCompatActivity {
     int[] pallete={R.color.col1,R.color.col2,R.color.col3,R.color.col4,R.color.col5,R.color.col6,};
     int coinPicked=0;
     int tag;
+    int coinCount=0;
+
     ImageView coin;
     int tagNo=0;
     public void coinchose(View view){
@@ -60,6 +62,7 @@ public class MainActivity extends AppCompatActivity {
                     state[tapped] = n;
                     n = 1;
                     coinPicked=0;
+                    coinCount+=1;
                     tagPostion[tapped]=tag;
                     coin.setVisibility(View.INVISIBLE);
                 } else if (n == 1 && state[tapped] == 2 && coinPicked==1 ) {
@@ -69,6 +72,7 @@ public class MainActivity extends AppCompatActivity {
                     n = 0;
                     coinPicked=0;
                     tagPostion[tapped]=tag;
+                    coinCount+=1;
                     coin.setVisibility(View.INVISIBLE);
                 }
                 else{
@@ -102,7 +106,7 @@ public class MainActivity extends AppCompatActivity {
                     } else if (state[wins[0]] == 2 || state[wins[1]] == 2 || state[wins[2]] == 2)
                         ct += 1;
                 }
-                if (ct == 0 && w == 0) {
+                if ((ct == 0 && w == 0) || coinCount==12 ) {
                     winner = "No one";
                     text.setText(winner + " has won ");
                     text.setVisibility(View.VISIBLE);
@@ -118,8 +122,10 @@ public class MainActivity extends AppCompatActivity {
                     state[tapped] = n;
                     n = 1;
                     coinPicked = 0;
+                    coinCount+=1;
                     tagPostion[tapped] = tag;
                     coin.setVisibility(View.INVISIBLE);
+
                 }
                 else if((int)Array.get(tagPostion,tapped)%2!=0 && tag>(int)Array.get(tagPostion,tapped) && (tag-(int)Array.get(tagPostion,tapped))>=1 && (tag-(int)Array.get(tagPostion,tapped))%2!=0) {
                     c8.setImageResource(R.drawable.yellow);
@@ -127,8 +133,10 @@ public class MainActivity extends AppCompatActivity {
                     state[tapped] = n;
                     n = 0;
                     coinPicked = 0;
+                    coinCount+=1;
                     tagPostion[tapped] = tag;
                     coin.setVisibility(View.INVISIBLE);
+
                 }
                 else{
                     Toast.makeText(this, "Choose correct coin", Toast.LENGTH_SHORT).show();
@@ -161,7 +169,7 @@ public class MainActivity extends AppCompatActivity {
                     } else if (state[wins[0]] == 2 || state[wins[1]] == 2 || state[wins[2]] == 2)
                         ct += 1;
                 }
-                if (ct == 0 && w == 0) {
+                if ((ct == 0 && w == 0) || coinCount==12) {
                     winner = "No one";
                     text.setText(winner + " has won ");
                     text.setVisibility(View.VISIBLE);
@@ -190,6 +198,8 @@ public class MainActivity extends AppCompatActivity {
         }
         n=0;
         w=0;
+        tagNo=0;
+        coinCount=0;
         for (int i=0;i<tagPostion.length;i++){
             tagPostion[i]=0;
         }
